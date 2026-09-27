@@ -1,0 +1,21 @@
+Meeting Title: Student Project Discussion
+Date: October 1, 2026
+Time: 1:00 PM
+
+Atharva: Let's discuss the progress of our final-year project.
+
+Shravani: The machine learning model is working, but the accuracy needs improvement.
+
+Mit: I will experiment with different preprocessing techniques.
+
+Vansh: I can work on improving the frontend interface.
+
+Shravani: I will review the model results and compare the different experiments.
+
+Mit: We also need better documentation for the experiments.
+
+Vansh: I will update the project documentation.
+
+Shravani: We should test the complete application once the model and frontend are ready.
+
+Vansh: Agreed. Let's continue the work and review the progress in our next meeting.

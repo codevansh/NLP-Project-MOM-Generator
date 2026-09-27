@@ -1,0 +1,27 @@
+Meeting Title: Mobile Application Bug Review
+Date: September 28, 2026
+Time: 11:30 AM
+
+Vansh: Good morning. Today we are reviewing the major bugs reported in the mobile application.
+
+Nitya: The application crashes when users open the notification screen.
+
+Mit: I checked the logs and found that the crash is related to the notification API.
+
+Vansh: Can you fix the API issue by tomorrow?
+
+Mit: Yes, I will fix the notification API and push the changes by tomorrow evening.
+
+Nitya: I will test the notification screen after Mit pushes the fix.
+
+Vansh: We also received reports that the login screen is loading slowly.
+
+Mit: I can investigate the login performance issue this afternoon.
+
+Nitya: I will compare the response times before and after the fix.
+
+Vansh: Let's perform regression testing after both issues are resolved.
+
+Mit: We should complete regression testing by Friday.
+
+Vansh: Good. We will review the remaining bugs during Friday's meeting.

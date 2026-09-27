@@ -1,0 +1,1 @@
+"""Small, focused modules for the meeting minutes pipeline."""

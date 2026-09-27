@@ -1,0 +1,13 @@
+Meeting Title: Website Review
+Date: September 30, 2026
+Time: 9:00 AM
+
+Nitya: The homepage is complete and the contact form is working.
+
+Vansh: I noticed that the mobile layout has a problem.
+
+Nitya: I will fix the responsive layout today.
+
+Vansh: I will test the website after the fix.
+
+Nitya: Great. Let's review the final version tomorrow morning.

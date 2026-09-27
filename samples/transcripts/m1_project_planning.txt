@@ -1,0 +1,29 @@
+Meeting Title: E-Commerce Project Planning
+Date: September 27, 2026
+Time: 2:00 PM
+
+Vansh: Good afternoon everyone. Today we need to finalize the plan for the e-commerce project.
+
+Nitya: The product catalog design is ready, but we still need to complete the shopping cart interface.
+
+Mit: I will implement the shopping cart API by Wednesday.
+
+Atharva: I have completed the database schema. I will also prepare the database documentation by Friday.
+
+Shravani: We should review the payment gateway integration before starting development.
+
+Nitya: I can work on the shopping cart interface and complete it by Thursday.
+
+Mit: There is also a problem with the authentication service. Some users are unable to reset their passwords.
+
+Atharva: I will investigate the password reset issue and report the findings tomorrow.
+
+Vansh: Once the authentication issue is resolved, we can begin integration testing.
+
+Shravani: We should schedule integration testing for next Monday.
+
+Vansh: Agreed. Let's finalize the development plan and review everyone's progress next week.
+
+Atharva: I will update the project documentation after the integration testing.
+
+Vansh: Great. That covers the planning discussion.

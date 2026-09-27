@@ -1,0 +1,29 @@
+Meeting Title: Student Portal Development Meeting
+Date: September 26, 2026
+Time: 10:00 AM
+
+Rahul: Good morning everyone. Today we need to discuss the progress of the student portal and finalize the tasks for the coming week.
+
+Priya: The frontend dashboard is almost complete. I have finished the student profile page, but the attendance section still needs some work.
+
+Rahul: Okay. I will complete the backend API for the attendance module by Friday.
+
+Amit: I found an issue with the login API. Some users are getting an authentication error when they try to log in.
+
+Priya: I can test the login API and report the exact issue by tomorrow.
+
+Rahul: Good. Once the login issue is fixed, we should integrate the frontend with the backend.
+
+Neha: I will prepare the presentation for the project review and share it with everyone by Monday.
+
+Amit: We should also conduct complete system testing next week.
+
+Rahul: Agreed. Let's schedule the final testing meeting for Tuesday at 11 AM.
+
+Priya: Before that, I will finish the attendance UI and make sure the dashboard is responsive.
+
+Rahul: Great. So the main action items are the attendance API, login testing, presentation, and system testing.
+
+Neha: I will also update the project documentation after the testing is completed.
+
+Rahul: Perfect. That covers everything for today. Thank you everyone.
