@@ -58,3 +58,24 @@ def test_meeting_title_header_is_not_reported_as_an_entity():
     assert {("September 27, 2026", "DATE"), ("Vansh", "PERSON")} <= {
         (entity["text"], entity["label"]) for entity in entities
     }
+
+
+def test_irrelevant_labels_are_filtered_and_speaker_labels_are_people():
+    nlp = spacy.blank("en")
+    ruler = nlp.add_pipe("entity_ruler")
+    ruler.add_patterns(
+        [
+            {"label": "LANGUAGE", "pattern": "Rahul"},
+            {"label": "NORP", "pattern": "Priya"},
+            {"label": "ORG", "pattern": "Acme Labs"},
+        ]
+    )
+    text = "Rahul: Hello. Priya: See you at Acme Labs on Friday."
+
+    entities = extract_entities(text, nlp)
+
+    assert {("Rahul", "PERSON"), ("Priya", "PERSON"), ("Acme Labs", "ORG"), ("Friday", "DATE")} <= {
+        (entity["text"], entity["label"]) for entity in entities
+    }
+    assert len([entity for entity in entities if entity["text"].casefold() == "rahul"]) == 1
+    assert not any(entity["label"] in {"LANGUAGE", "NORP"} for entity in entities)

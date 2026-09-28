@@ -8,6 +8,7 @@ def build_meeting_report(
     executive_summary: str,
     discussion_points: list[str],
     source_text: str = "",
+    audio_transcript: bool = False,
 ) -> dict:
     """Combine pipeline results into the agreed meeting report structure."""
     unique_points = []
@@ -19,7 +20,11 @@ def build_meeting_report(
             seen_points.add(key)
 
     return {
-        "meeting_metadata": extract_meeting_metadata(source_text, entities),
+        "meeting_metadata": extract_meeting_metadata(
+            source_text,
+            entities,
+            audio_transcript=audio_transcript,
+        ),
         "executive_summary": executive_summary,
         "key_discussion_points": unique_points[:7],
         "entities": entities,

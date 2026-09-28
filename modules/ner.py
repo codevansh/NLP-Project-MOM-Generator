@@ -7,6 +7,7 @@ from modules.information_extraction import extract_speaker_labels
 
 
 _TECHNICAL_TERMS = {"API", "UI", "UX", "URL", "HTTP", "HTTPS", "SQL", "CPU"}
+_MEETING_ENTITY_LABELS = {"PERSON", "DATE", "TIME", "ORG", "GPE", "LOC"}
 _DATE = re.compile(
     r"\b(?:"
     r"(?:January|February|March|April|May|June|July|August|September|October|November|December)"
@@ -43,6 +44,10 @@ def extract_entities(text: str, nlp=None) -> list[dict[str, str]]:
     speakers = extract_speaker_labels(text)
     speaker_keys = {name.casefold() for name in speakers}
     header_spans = [match.span() for match in _HEADER_LINE.finditer(text)]
+    if re.match(r"^\s*meeting\s+title\b", text, re.IGNORECASE):
+        first_date = _DATE.search(text)
+        if first_date:
+            header_spans.append((0, first_date.start()))
     found = []
 
     for entity in doc.ents:
@@ -51,6 +56,8 @@ def extract_entities(text: str, nlp=None) -> list[dict[str, str]]:
         if entity.label_ in {"DATE", "TIME"}:
             continue
         label = "PERSON" if entity.text.casefold() in speaker_keys else entity.label_
+        if label not in _MEETING_ENTITY_LABELS:
+            continue
         if label == "ORG" and entity.text.upper() in _TECHNICAL_TERMS:
             continue
         found.append((entity.start_char, entity.text, label))
@@ -64,11 +71,15 @@ def extract_entities(text: str, nlp=None) -> list[dict[str, str]]:
         if start >= 0:
             found.append((start, name, "PERSON"))
 
+    label_priority = {"PERSON": 0, "DATE": 1, "TIME": 2, "ORG": 3, "GPE": 4, "LOC": 5}
     entities = []
-    seen = set()
-    for _, entity_text, label in sorted(found, key=lambda item: item[0]):
-        key = (entity_text.casefold(), label)
-        if key not in seen:
+    seen_text = set()
+    for _, entity_text, label in sorted(
+        found,
+        key=lambda item: (item[0], label_priority.get(item[2], 10)),
+    ):
+        key = entity_text.casefold()
+        if key not in seen_text:
             entities.append({"text": entity_text, "label": label})
-            seen.add(key)
+            seen_text.add(key)
     return entities

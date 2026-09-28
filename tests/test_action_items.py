@@ -19,7 +19,7 @@ def test_extract_action_items_uses_person_and_date_entities():
 
 def test_extract_action_items_handles_first_person_and_deadline_pattern():
     assert extract_action_items(["I will finish testing tomorrow."]) == [
-        {"task": "finish testing", "assigned_to": "Unspecified", "deadline": "tomorrow"}
+        {"task": "finish testing", "assigned_to": "Unknown", "deadline": "tomorrow"}
     ]
 
 

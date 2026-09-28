@@ -76,7 +76,7 @@ def _assigned_to(
         return speaker
     if explicit_name:
         return explicit_name
-    return "Unspecified"
+    return "Unknown"
 
 
 def _name_candidate(text: str, entities: list[dict[str, str]]) -> str:
@@ -179,7 +179,9 @@ def _remove_duplicate_tasks(items: list[dict[str, str]]) -> list[dict[str, str]]
 
 
 def extract_action_items(
-    sentences: list[str], entities: list[dict[str, str]] | None = None
+    sentences: list[str],
+    entities: list[dict[str, str]] | None = None,
+    allow_unlabelled_first_person_owner: bool = True,
 ) -> list[dict[str, str]]:
     """Find commitments with readable trigger-word patterns and nearby entities."""
     entities = entities or []
@@ -224,15 +226,25 @@ def extract_action_items(
             if coordination and subject:
                 task = f"coordinate with {coordination.group(1).strip()} and finalize {subject.group(1).strip()}"
 
-        item = {
-            "task": task,
-            "assigned_to": _assigned_to(
+        first_person_commitment = trigger.group(0).casefold().startswith(("i ", "i'", "i’"))
+        if (
+            first_person_commitment
+            and current_speaker is None
+            and not allow_unlabelled_first_person_owner
+        ):
+            assigned_to = "Unknown"
+        else:
+            assigned_to = _assigned_to(
                 prefix,
                 current_speaker,
                 entities,
                 after_trigger,
                 trigger.group(0).casefold() == "assigned to",
-            ),
+            )
+
+        item = {
+            "task": task,
+            "assigned_to": assigned_to,
             "deadline": deadline,
         }
         normalized_task = re.sub(r"\W+", " ", item["task"].casefold()).strip()
